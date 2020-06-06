@@ -9,7 +9,7 @@ function make_trash {
 function parse_args {
 	while [[ $# -ne 0 ]] ; do
 		case $1 in
-			-e|--empty) empty_trash ;;
+			-e|--empty) empty_trash &> /dev/null ;;
 			*) files+=($1) ;;
 		esac
 		shift
@@ -17,8 +17,8 @@ function parse_args {
 }
 
 function empty_trash {
-	rm --recursive --force $CANDIR/* &> /dev/null
-	rm --recursive --force $CANDIR/.* &> /dev/null
+	rm --recursive --force $CANDIR/*
+	rm --recursive --force $CANDIR/.*
 }
 
 function main {
